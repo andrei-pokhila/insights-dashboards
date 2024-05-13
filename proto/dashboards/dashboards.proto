@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package main;
+
+option go_package = "github.com/andrei-pokhila/insights-dashboards";
+
+service BasicDiffs {
+	rpc GetFundingRate(BasicRequest) returns (FundingResponse) {}
+}
+
+message BasicRequest {
+	Exchange exchange = 1;
+	repeated string markets = 2;
+	int64 start = 3;
+	int64 end = 4;
+	int32 window_size = 5;
+	optional string granularity = 6;
+}
+
+message FundingResponse {
+	repeated FundingPoint points = 1;
+}
+
+message FundingPoint {
+	int64 timestamp = 1;
+	string market = 2;
+	double funding_rate = 3;
+}
+
+enum Exchange {
+	ALL = 0;
+	BINANCE = 1;
+	BYBIT = 2;
+	DYDX_V3 = 3;
+	DYDX_V4 = 4;
+}

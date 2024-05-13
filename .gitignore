@@ -19,3 +19,23 @@
 
 # Go workspace file
 go.work
+
+
+# Environments
+.env
+local.yaml
+
+# Terraform
+.terraform/
+terraform*
+
+#vscode
+.vscode/
+
+#build
+bootstrap
+*.zip
+
+#debug
+__debug*
+
