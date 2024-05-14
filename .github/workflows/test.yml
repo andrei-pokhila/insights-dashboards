@@ -15,8 +15,8 @@ jobs:
         
         - uses: 'google-github-actions/auth@v2'
           with:
-            project_id: 'datafi-415911'
             workload_identity_provider: 'projects/638956850939/locations/global/workloadIdentityPools/github/providers/my-repo'
+            service_account: 'github-deploy@datafi-415911.iam.gserviceaccount.com'
 
         - name: Deploy to Cloud Run
           id: deploy
