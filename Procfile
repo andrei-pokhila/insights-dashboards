@@ -1,1 +1,1 @@
-app: go run cmd/dashboards/main.go
+web: go run cmd/dashboards/main.go
