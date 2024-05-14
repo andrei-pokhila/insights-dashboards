@@ -1,12 +1,19 @@
-name: Print environment variables
+name: Deploy
 
 on:
   workflow_dispatch:
 
 jobs:
-  debug:
-    runs-on: ubuntu-latest
-
+  deploy:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+      
     steps:
-      - name: Print
-        run: env | sort
+        - uses: actions/checkout@v4
+        
+        - uses: 'google-github-actions/auth@v2'
+          with:
+            project_id: 'datafi-415911'
+            workload_identity_provider: 'projects/638956850939/locations/global/workloadIdentityPools/github/providers/my-repo'
+
