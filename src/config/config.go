@@ -28,7 +28,6 @@ func NewConfig() *Config {
 		"PORT":                    DEFAULT_GRPC_PORT,
 		"DASHBOARDS_GRPC_TIMEOUT": DEFAULT_GRPC_TIMEOUT,
 	}, "."), nil)
-
 	if err != nil {
 		panic(err)
 	}
