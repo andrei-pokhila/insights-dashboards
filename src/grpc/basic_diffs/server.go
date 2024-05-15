@@ -2,7 +2,7 @@ package basic_diffs
 
 import (
 	"context"
-	"fmt"
+	"log/slog"
 
 	dashboards "github.com/andrei-pokhila/insights-dashboards/gen/go/dashboards"
 	"github.com/andrei-pokhila/insights-dashboards/src/dashboards/basic_diffs"
@@ -11,10 +11,11 @@ import (
 
 type serverAPI struct {
 	dashboards.UnimplementedBasicDiffsServer
+	logger *slog.Logger
 }
 
-func Register(gRPC *grpc.Server) {
-	dashboards.RegisterBasicDiffsServer(gRPC, &serverAPI{})
+func Register(gRPC *grpc.Server, logger *slog.Logger) {
+	dashboards.RegisterBasicDiffsServer(gRPC, &serverAPI{logger: logger})
 }
 
 func (s *serverAPI) GetFundingRate(
@@ -23,7 +24,7 @@ func (s *serverAPI) GetFundingRate(
 ) (*dashboards.FundingResponse, error) {
 	candles := basic_diffs.GetCandles(in)
 
-	fmt.Println("Execute")
+	s.logger.Info("GetFundingRate")
 
 	// return nil, status.Errorf(codes.Unimplemented, "method GetFundingRate not implemented")
 

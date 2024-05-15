@@ -17,7 +17,7 @@ type App struct {
 
 func NewApp(logger *slog.Logger, port int) *App {
 	gRPCServer := grpc.NewServer()
-	basicDiffs.Register(gRPCServer)
+	basicDiffs.Register(gRPCServer, logger)
 
 	return &App{
 		logger:     logger,
