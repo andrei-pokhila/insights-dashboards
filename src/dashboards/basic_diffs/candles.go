@@ -2,8 +2,7 @@ package basic_diffs
 
 import (
 	"bytes"
-	"path/filepath"
-	"runtime"
+	_ "embed"
 	"strings"
 	"text/template"
 	"time"
@@ -13,16 +12,16 @@ import (
 	"github.com/andrei-pokhila/insights-dashboards/src/storage"
 )
 
+//go:embed price_diff.sql
+var priceDiffTemplate string
+
 func GetCandles(r *insights_dashboards.BasicRequest) *insights_dashboards.FundingResponse {
 	var (
 		rawTmpl  bytes.Buffer
 		response insights_dashboards.FundingResponse
 	)
 
-	_, filename, _, _ := runtime.Caller(0)
-	dirname := filepath.Dir(filename)
-
-	tmpl, err := template.New("price_diff.sql").ParseFiles(dirname + "/price_diff.sql")
+	tmpl, err := template.New("price_diff.sql").Parse(priceDiffTemplate)
 	if err != nil {
 		panic(err)
 	}
