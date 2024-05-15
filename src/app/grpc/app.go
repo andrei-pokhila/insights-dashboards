@@ -33,7 +33,7 @@ func (a *App) MustStart() {
 }
 
 func (a *App) Start() error {
-	l, err := net.Listen("tcp", fmt.Sprintf(":%d", a.port))
+	l, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%d", a.port))
 	if err != nil {
 		a.logger.Error(fmt.Sprint(err))
 
