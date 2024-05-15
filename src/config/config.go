@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	DEFAULT_GRPC_PORT    = 44044
+	DEFAULT_GRPC_PORT    = 8080
 	DEFAULT_GRPC_TIMEOUT = "5s"
 	DEFAULT_DEBUG        = false
 )
